@@ -3,7 +3,6 @@ package com.kygoinc.spotifyuiclone
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -69,11 +68,10 @@ fun HomeScreenPreview() {
 @Composable
 fun MainBody(modifier: Modifier = Modifier) {
 
-    Column (
-        modifier = modifier
-            .verticalScroll(rememberScrollState())
+    Column(
+        modifier = modifier.verticalScroll(rememberScrollState())
 
-    ){
+    ) {
 
 
         RecentlyPlayed1Row()
@@ -104,7 +102,7 @@ fun TopBarElement() {
             Text(
                 text = "Good Afternoon",
                 style = TextStyle(
-                    fontSize = 24.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold
+                    fontSize = 24.sp, fontWeight = FontWeight.SemiBold
                 ),
                 color = SpotifyWhite,
                 modifier = Modifier.weight(6f),
@@ -318,7 +316,7 @@ fun RecentlyPlayedRow(modifier: Modifier = Modifier) {
 
 @Composable
 fun MadeForComponent(
-    modifier: Modifier.Companion = Modifier,
+    modifier: Modifier = Modifier,
 ) {
 
     Column {
@@ -350,7 +348,7 @@ fun YourTopMixesComponent(
 
 @Composable
 fun RecentlyPlayedComponent(
-    modifier: Modifier.Companion = Modifier,
+    modifier: Modifier = Modifier,
 ) {
 
     Column {
@@ -406,10 +404,8 @@ fun RecentlyPlayedComponent(
 @Composable
 fun BottomAppBarDefaults(modifier: Modifier = Modifier) {
     BottomNavigation(
-        modifier = modifier,
-        backgroundColor = Color(0x160A0A0A)
-    )
-    {
+        modifier = modifier, backgroundColor = Color(0x160A0A0A)
+    ) {
         BottomNavigationItem(selected = true,
             onClick = { /*TODO*/ },
             label = { Text(text = "Home") },
