@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Spotify UI Clone</string>
+    <string name="drake">Drake</string>
+    <string name="nf">NF</string>
+    <string name="meek_mill">Meek Mill\n</string>
+    <string name="future">Future\n</string>
+    <string name="tems">Tems\n</string>
+    <string name="dave">Dave\n</string>
+
+    <string name="daily_mix_one">Drake, Asap Rocky, Future and more</string>
+    <string name="daily_mix_two">NF, Eminem, Logic and more</string>
+    <string name="daily_mix_three">Meek Mill, Lil Baby, Roddy Ricch and more</string>
+    <string name="daily_mix_four">Future, Young Thug, Lil Uzi Vert and more</string>
+    <string name="daily_mix_five">Tems, Davido, Adekunle Gold and more</string>
+    <string name="daily_mix_six">Dave, Stormzy, J Hus and more</string>
+</resources>
