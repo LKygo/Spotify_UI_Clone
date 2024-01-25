@@ -3,8 +3,10 @@ package com.kygoinc.spotifyuiclone
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +20,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
@@ -61,6 +65,33 @@ fun HomeScreen() {
 fun HomeScreenPreview() {
 
 }
+
+@Composable
+fun MainBody(modifier: Modifier = Modifier) {
+
+    Column (
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+
+    ){
+
+
+        RecentlyPlayed1Row()
+        MadeForComponent()
+        YourTopMixesComponent()
+        RecentlyPlayedComponent()
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFF121212, widthDp = 360, heightDp = 640)
+@Composable
+private fun MainBodyPreview() {
+
+    SpotifyUICloneTheme {
+        MainBody()
+    }
+}
+
 
 @Composable
 fun TopBarElement() {
@@ -131,13 +162,14 @@ fun RecentlyPlayedComponent(
     modifier: Modifier = Modifier, @DrawableRes imageId: Int, @StringRes value: Int
 ) {
     Surface(
-        modifier = modifier.padding(8.dp),
+
+        modifier = modifier.padding(4.dp),
         shape = MaterialTheme.shapes.extraSmall,
         color = SpotifyDarkGrey
     ) {
         Row(
             modifier = modifier
-                .width(180.dp)
+                .width(160.dp)
                 .padding(0.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -171,8 +203,9 @@ fun RecentlyPlayed1Row(modifier: Modifier = Modifier) {
 
     LazyHorizontalGrid(
         rows = GridCells.Fixed(2),
-        modifier = modifier.height(145.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        modifier = modifier.height(130.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        contentPadding = PaddingValues(8.dp)
     ) {
 
         items(recentlyPlayedData) {
@@ -372,7 +405,8 @@ fun RecentlyPlayedComponent(
 
 @Composable
 fun BottomAppBarDefaults(modifier: Modifier = Modifier) {
-    BottomNavigation(modifier = modifier,
+    BottomNavigation(
+        modifier = modifier,
         backgroundColor = Color(0x160A0A0A)
     )
     {
