@@ -23,6 +23,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LibraryAddCheck
@@ -31,6 +32,7 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Surface
@@ -47,6 +49,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kygoinc.spotifyuiclone.ui.theme.SpotifyBlack
+import com.kygoinc.spotifyuiclone.ui.theme.SpotifyBlackUpper
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyDarkGrey
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyGrey
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyUICloneTheme
@@ -55,14 +59,27 @@ import com.kygoinc.spotifyuiclone.ui.theme.SpotifyWhite
 @Composable
 fun HomeScreen() {
     SpotifyUICloneTheme {
-
+        Scaffold(
+            backgroundColor = SpotifyBlack,
+            topBar = {
+                TopBarElement()
+            },
+            bottomBar = {
+                BottomAppBarDefaults()
+            }
+        ) { paddingValues ->
+            MainBody(modifier = Modifier.padding(paddingValues))
+        }
     }
+
 }
 
 @Preview
 @Composable
 fun HomeScreenPreview() {
-
+    SpotifyUICloneTheme {
+        HomeScreen()
+    }
 }
 
 @Composable
@@ -127,20 +144,20 @@ fun TopBarElement() {
                 modifier = Modifier.weight(1f)
             )
         }
+        val chipItems = listOf("Music", "Podcasts", "Audiobooks")
 
-        ChipsElement()
+        ChipsElement(chipItems)
     }
 }
 
 @Composable
-fun ChipsElement() {
+fun ChipsElement(chipItems: List<String>){
 
-    val chipItems = listOf("Music", "Podcasts", "Audiobooks")
 
     LazyRow(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+            .fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 12.dp),
     ) {
         items(chipItems) { chipItem ->
             SuggestionChip(
@@ -163,7 +180,9 @@ fun RecentlyPlayedComponent(
 
         modifier = modifier.padding(4.dp),
         shape = MaterialTheme.shapes.extraSmall,
-        color = SpotifyDarkGrey
+        color = SpotifyBlackUpper,
+//        tonalElevation = 28.dp,
+//        shadowElevation = 68.dp
     ) {
         Row(
             modifier = modifier
@@ -183,7 +202,7 @@ fun RecentlyPlayedComponent(
             Text(
                 text = stringResource(id = value),
                 style = TextStyle(
-                    fontSize = 18.sp, fontWeight = FontWeight(weight = 500)
+                    fontSize = 14.sp, fontWeight = FontWeight(weight = 500)
                 ),
                 color = SpotifyWhite,
                 modifier = modifier
@@ -219,19 +238,20 @@ fun MadeForComponent(
     @DrawableRes imageId: Int, @StringRes value: Int, modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.width(100.dp)
+        modifier = modifier.width(140.dp)
     ) {
         Image(
             painter = painterResource(imageId),
             contentDescription = "",
-            modifier = modifier.size(100.dp),
+            modifier = modifier.size(140.dp),
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
+            maxLines = 2,
             text = stringResource(id = value),
             style = TextStyle(
-                fontSize = 10.sp, fontWeight = FontWeight(weight = 400), letterSpacing = 0.3.sp
+                fontSize = 13.sp, fontWeight = FontWeight(weight = 400), letterSpacing = 0.3.sp
             ),
             color = SpotifyGrey,
         )
@@ -243,12 +263,12 @@ fun RecentlyPlayed(
     @DrawableRes imageId: Int, @StringRes value: Int, modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.width(100.dp)
+        modifier = modifier.width(120.dp)
     ) {
         Image(
             painter = painterResource(imageId),
             contentDescription = "",
-            modifier = modifier.size(100.dp),
+            modifier = modifier.size(120.dp),
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.height(4.dp))
@@ -267,9 +287,9 @@ fun MadeForRow(modifier: Modifier = Modifier) {
 
     LazyRow(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+            .fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(madeForData) {
             MadeForComponent(
@@ -284,9 +304,9 @@ fun YourTopMixesRow(modifier: Modifier = Modifier) {
 
     LazyRow(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+            .fillMaxWidth() ,
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(topMixesData) {
             MadeForComponent(
@@ -301,9 +321,8 @@ fun RecentlyPlayedRow(modifier: Modifier = Modifier) {
 
     LazyRow(
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+            .fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 16.dp),        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(recentlyPlayedData) {
             RecentlyPlayed(
@@ -404,26 +423,74 @@ fun RecentlyPlayedComponent(
 @Composable
 fun BottomAppBarDefaults(modifier: Modifier = Modifier) {
     BottomNavigation(
-        modifier = modifier, backgroundColor = Color(0x160A0A0A)
+        modifier = modifier, backgroundColor = Color(0x0E121212)
     ) {
         BottomNavigationItem(selected = true,
             onClick = { /*TODO*/ },
-            label = { Text(text = "Home") },
-            selectedContentColor = SpotifyWhite,
-            unselectedContentColor = SpotifyGrey,
-            icon = { Icon(Icons.Filled.Home, contentDescription = "Home") })
+            label = {
+                Text(
+                    text = "Home",
+                    color = SpotifyGrey,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight(weight = 500),
+                        letterSpacing = 0.5.sp
+                    )
+                )
+            },
+            selectedContentColor = Color.White,
+            unselectedContentColor = SpotifyWhite,
+            icon = {
+                Icon(
+                    Icons.Filled.Home,
+                    contentDescription = "Home",
+                    tint = SpotifyGrey
+                )
+            })
         BottomNavigationItem(selected = false,
             onClick = { /*TODO*/ },
-            label = { Text(text = "Search") },
+            label = {
+                Text(
+                    text = "Search",
+                    color = SpotifyGrey,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight(weight = 500),
+                        letterSpacing = 0.5.sp
+                    )
+                )
+            },
             selectedContentColor = SpotifyWhite,
             unselectedContentColor = SpotifyGrey,
-            icon = { Icon(Icons.Filled.Search, contentDescription = "Search") })
+            icon = {
+                Icon(
+                    Icons.Filled.Search,
+                    contentDescription = "Search",
+                    tint = SpotifyGrey
+                )
+            })
         BottomNavigationItem(selected = false,
             onClick = { /*TODO*/ },
-            label = { Text(text = "Home") },
+            label = {
+                Text(
+                    text = "Your Library",
+                    color = SpotifyGrey,
+                    style = TextStyle(
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight(weight = 500),
+                        letterSpacing = 0.5.sp
+                    )
+                )
+            },
             selectedContentColor = SpotifyWhite,
             unselectedContentColor = SpotifyGrey,
-            icon = { Icon(Icons.Filled.LibraryAddCheck, contentDescription = "Your Library") })
+            icon = {
+                Icon(
+                    Icons.Filled.LibraryAddCheck,
+                    contentDescription = "Your Library",
+                    tint = SpotifyGrey
+                )
+            })
     }
 }
 

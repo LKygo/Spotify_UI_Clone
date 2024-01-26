@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                  YourLibraryScreen()
                 }
             }
         }
@@ -30,17 +30,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MyAppScreen(modifier: Modifier = Modifier) {
+   YourLibraryScreen()
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     SpotifyUICloneTheme {
-        Greeting("Android")
+       MyAppScreen()
     }
 }

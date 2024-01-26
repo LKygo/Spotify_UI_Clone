@@ -13,4 +13,28 @@
     <string name="daily_mix_four">Future, Young Thug, Lil Uzi Vert and more</string>
     <string name="daily_mix_five">Tems, Davido, Adekunle Gold and more</string>
     <string name="daily_mix_six">Dave, Stormzy, J Hus and more</string>
+    <string name="library_one">Liked songs\n</string>
+    <string name="library_two">Anime motivation\n</string>
+    <string name="library_three">The boy\n</string>
+    <string name="library_four">Mellow way\n</string>
+    <string name="library_five">Butter\n</string>
+    <string name="library_six">Gold mine\n</string>
+    <string name="library_seven">Pollen\n</string>
+    <string name="library_eight">Keep it rolling\n</string>
+    <string name="library_nine">Signed XOXO\n</string>
+    <string name="library_ten">FightNight\n</string>
+    <string name="library_eleven">Butter\n</string>
+
+    <string name="library_one_value">Playlist • 50 songs</string>
+    <string name="library_two_value">Playlist • FITNESSXCAVE</string>
+    <string name="library_three_value">Playlist • Naisss</string>
+    <string name="library_four_value">Playlist • Kygo</string>
+    <string name="library_five_value">Playlist • Kygo</string>
+    <string name="library_six_value">Playlist • Kygo</string>
+    <string name="library_seven_value">Playlist • Kygo</string>
+    <string name="library_eight_value">Playlist • Kygo</string>
+    <string name="library_nine_value">Playlist • Spotify</string>
+    <string name="library_ten_value">Playlist • Drakefeltthis</string>
+    <string name="library_eleven_value">Playlist • Kygo</string>
+
 </resources>
