@@ -32,7 +32,6 @@ import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Schedule
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.Surface
@@ -49,24 +48,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyBlack
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyBlackUpper
-import com.kygoinc.spotifyuiclone.ui.theme.SpotifyDarkGrey
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyGrey
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyUICloneTheme
 import com.kygoinc.spotifyuiclone.ui.theme.SpotifyWhite
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     SpotifyUICloneTheme {
         Scaffold(
             backgroundColor = SpotifyBlack,
             topBar = {
                 TopBarElement()
             },
-            bottomBar = {
-                BottomAppBarDefaults()
-            }
+
         ) { paddingValues ->
             MainBody(modifier = Modifier.padding(paddingValues))
         }
@@ -78,7 +76,7 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     SpotifyUICloneTheme {
-        HomeScreen()
+        HomeScreen(navController = rememberNavController())
     }
 }
 
@@ -420,80 +418,6 @@ fun RecentlyPlayedComponent(
 //}
 
 
-@Composable
-fun BottomAppBarDefaults(modifier: Modifier = Modifier) {
-    BottomNavigation(
-        modifier = modifier, backgroundColor = Color(0x0E121212)
-    ) {
-        BottomNavigationItem(selected = true,
-            onClick = { /*TODO*/ },
-            label = {
-                Text(
-                    text = "Home",
-                    color = SpotifyGrey,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight(weight = 500),
-                        letterSpacing = 0.5.sp
-                    )
-                )
-            },
-            selectedContentColor = Color.White,
-            unselectedContentColor = SpotifyWhite,
-            icon = {
-                Icon(
-                    Icons.Filled.Home,
-                    contentDescription = "Home",
-                    tint = SpotifyGrey
-                )
-            })
-        BottomNavigationItem(selected = false,
-            onClick = { /*TODO*/ },
-            label = {
-                Text(
-                    text = "Search",
-                    color = SpotifyGrey,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight(weight = 500),
-                        letterSpacing = 0.5.sp
-                    )
-                )
-            },
-            selectedContentColor = SpotifyWhite,
-            unselectedContentColor = SpotifyGrey,
-            icon = {
-                Icon(
-                    Icons.Filled.Search,
-                    contentDescription = "Search",
-                    tint = SpotifyGrey
-                )
-            })
-        BottomNavigationItem(selected = false,
-            onClick = { /*TODO*/ },
-            label = {
-                Text(
-                    text = "Your Library",
-                    color = SpotifyGrey,
-                    style = TextStyle(
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight(weight = 500),
-                        letterSpacing = 0.5.sp
-                    )
-                )
-            },
-            selectedContentColor = SpotifyWhite,
-            unselectedContentColor = SpotifyGrey,
-            icon = {
-                Icon(
-                    Icons.Filled.LibraryAddCheck,
-                    contentDescription = "Your Library",
-                    tint = SpotifyGrey
-                )
-            })
-    }
-}
-
 private val recentlyPlayedData = listOf(
     R.drawable.album_cover to R.string.drake,
     R.drawable.nf_top_mix to R.string.nf,
@@ -521,7 +445,7 @@ private val topMixesData = listOf(
     R.drawable.similar_to2 to R.string.daily_mix_six
 ).map { DrawableStringPair(it.first, it.second) }
 
-private data class DrawableStringPair(
+data class DrawableStringPair(
     @DrawableRes val drawable: Int, @StringRes val text: Int
 )
 
@@ -603,11 +527,5 @@ fun RecentlyPlayedComponentPreview() {
     }
 }
 
-@Preview
-@Composable
-fun AppNavBarPreview() {
-    SpotifyUICloneTheme {
-        BottomAppBarDefaults()
-    }
-}
+
 

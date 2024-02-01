@@ -36,5 +36,16 @@
     <string name="library_nine_value">Playlist • Spotify</string>
     <string name="library_ten_value">Playlist • Drakefeltthis</string>
     <string name="library_eleven_value">Playlist • Kygo</string>
+    <string name="search_suggestions">Podcasts\n</string>
+    <string name="search_title1">Hip-hop</string>
+    <string name="search_title2">Pop</string>
+    <string name="search_title3">Rap</string>
+    <string name="search_title4">Afrobeat</string>
+    <string name="search_title5">RnB</string>
+    <string name="search_title6">Rock</string>
+    <string name="search_title7">Country</string>
+    <string name="search_title8">Podcasts</string>
+    <string name="search_title9">Made for you</string>
+    <string name="search_title10">Charts</string>
 
 </resources>

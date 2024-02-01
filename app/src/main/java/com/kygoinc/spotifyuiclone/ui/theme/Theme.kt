@@ -32,8 +32,8 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = SpotifyWhite,
     onSecondary = SpotifyWhite,
     onTertiary = SpotifyWhite,
-    onBackground = SpotifyGrey,
-    onSurface = SpotifyWhite,
+    onBackground = SpotifyBlack,
+    onSurface = SpotifyBlack,
 
 )
 
